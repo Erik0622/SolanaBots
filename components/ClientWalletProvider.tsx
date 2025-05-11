@@ -4,7 +4,7 @@ import React, { FC, ReactNode, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
+import { clusterApiUrl, Connection } from '@solana/web3.js';
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
@@ -18,12 +18,26 @@ interface ClientWalletProviderProps {
 }
 
 const ClientWalletProvider: FC<ClientWalletProviderProps> = ({ children }) => {
-  // Das Netzwerk kann auf 'devnet', 'testnet' oder 'mainnet-beta' gesetzt werden
+  // Für Produktionsumgebung sollten Sie einen RPC-Dienst wie QuickNode, Helius oder Alchemy verwenden
   const network = WalletAdapterNetwork.Mainnet;
+  
+  // Verwenden Sie einen zuverlässigen RPC-Endpunkt
+  const endpoint = useMemo(() => {
+    // Für Produktionsanwendungen sollten Sie einen eigenen RPC-Endpunkt verwenden
+    // z.B. von QuickNode, Helius oder Alchemy
+    const defaultEndpoint = clusterApiUrl(network);
+    
+    // Die Verbindungsoptionen helfen bei der Stabilität
+    const connection = new Connection(defaultEndpoint, {
+      commitment: 'confirmed',
+      disableRetryOnRateLimit: false,
+      confirmTransactionInitialTimeout: 60000,
+    });
+    
+    return defaultEndpoint;
+  }, [network]);
 
-  // Sie können auch eine beliebige Verbindungs-URL verwenden
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-
+  // Nur die bekannten verfügbaren Wallets verwenden
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),
