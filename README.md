@@ -1,6 +1,28 @@
 # Solana Trading Bots
 
-Eine moderne Webapplikation, die automatisierte Trading-Bots für die Solana-Blockchain anbietet. Die Bots sind auf Profitabilität ausgerichtet und bieten verschiedene Handelssstrategien mit moderatem Risikomanagement.
+Diese Website bietet Trading-Bots für die Solana-Blockchain.
+
+## Deployment
+
+Diese Anwendung ist am besten über Vercel oder Netlify zu deployen:
+
+1. Besuchen Sie [vercel.com](https://vercel.com) oder [netlify.com](https://netlify.com)
+2. Erstellen Sie ein Konto und verbinden Sie Ihr GitHub-Repository
+3. Die Plattform erkennt automatisch die Next.js-Konfiguration
+4. Klicken Sie auf "Deploy" und Ihre Seite ist innerhalb von Minuten live
+
+## Features
+
+- Mehrere Trading-Bot-Strategien
+- Echtzeit-Daten von der Solana-Blockchain
+- Benutzerfreundliches Dashboard
+- Mobile-responsive Design
+
+## Autor
+
+Erik0622
+
+[GitHub Repository](https://github.com/Erik0622/SolanaBots)
 
 ## Funktionen
 
